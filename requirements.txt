@@ -1,0 +1,15 @@
+streamlit
+langchain
+langgraph
+langchain_community
+langchain_core
+langchain_groq
+faiss-cpu
+tiktoken
+pypdf
+langchain_huggingface
+huggingface
+bs4
+numpy<2
+opencv-python
+
