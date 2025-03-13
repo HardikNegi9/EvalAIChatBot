@@ -24,7 +24,7 @@ class DisplayResultStreamlit:
                             st.markdown(f"<p style='font-size: small; color: lightgray;'>Transforming the question...</p>", unsafe_allow_html=True)
                             new_question = value["question"]
                         elif key == "retrieve":
-                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Retrieved {len(value)} documents ✅</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Retrieved documents ✅</p>", unsafe_allow_html=True)
                         elif key == "grade_documents":
                             st.markdown(f"<p style='font-size: small; color: lightgray;'>Graded documents ✅</p>", unsafe_allow_html=True)
                         elif key == "generate":
