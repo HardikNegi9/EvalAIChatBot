@@ -3,15 +3,15 @@ import json
 import os
 from datetime import date
 from src.langgraphagenticai.ui.uiconfigfile import Config
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from src.langgraphagenticai.vectorstore.retriever import Retriever
 import asyncio
 
-load_dotenv()
+# load_dotenv()
 
-os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
-os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
+# os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
+# os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
+# os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
 
 class LoadStreamlitUI:
     def __init__(self):
