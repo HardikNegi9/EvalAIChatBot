@@ -49,6 +49,7 @@ class RagChatBot:
 
         # RAG generation
         generation = self.rag_chain.invoke({"context": documents, "question": question})
+        state["generated"] += 1
         return {"documents": documents, "question": question, "generation": generation}
 
     def grade_documents(self, state: GraphState):
@@ -96,7 +97,7 @@ class RagChatBot:
 
         # Re-write question
         better_question = self.question_rewriter.invoke({"question": question})
-        return {"documents": documents, "question": better_question}
+        return {"documents": documents, "question": better_question, "question_rewritten": True}
 
     def HumanSupport(self, state: GraphState):
         """
@@ -193,6 +194,10 @@ class RagChatBot:
                 print("---DECISION: GENERATION ADDRESSES QUESTION---")
                 return "useful"
             else:
+                if state["question_rewritten"]:
+                    print("---DECISION: GENERATION DOES NOT ADDRESS THE REWRITTEN QUESTION, SWITCH TO HUMAN SUPPORT---")
+                    return "Looping_Conditon"
+
                 print("---DECISION: GENERATION DOES NOT ADDRESS QUESTION---")
                 return "not useful"
         else:

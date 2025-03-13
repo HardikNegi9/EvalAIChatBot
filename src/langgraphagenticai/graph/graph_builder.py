@@ -52,6 +52,7 @@ class GraphBuilder:
                 "not supported": "generate",
                 "useful": END,
                 "not useful": "transform_query",
+                "Looping_Conditon": "HumanSupport",
             },
         )
 

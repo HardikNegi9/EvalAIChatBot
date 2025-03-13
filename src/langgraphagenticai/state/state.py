@@ -19,6 +19,13 @@ class GraphState(TypedDict):
     question: str
     generation: str
     documents: List[str]
+    
+    generated: int = Field(
+        description="Count of response generated", default=0
+    )
+    question_rewritten: bool = Field(
+        description="Count of question re-written", default=False
+    )
 
 
 class RouteQuery(BaseModel):

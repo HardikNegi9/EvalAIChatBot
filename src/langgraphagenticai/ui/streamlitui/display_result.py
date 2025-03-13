@@ -15,7 +15,7 @@ class DisplayResultStreamlit:
         new_question = None
 
         placeholder = st.empty()
-        for output in graph.stream({'question': user_message}):
+        for output in graph.stream({'question': user_message, 'generated': 0, 'question_rewritten': False}):
             for key, value in output.items():
 
                 with placeholder.container():
@@ -24,22 +24,25 @@ class DisplayResultStreamlit:
                             st.markdown(f"<p style='font-size: small; color: lightgray;'>Transforming the question...</p>", unsafe_allow_html=True)
                             new_question = value["question"]
                         elif key == "retrieve":
-                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Retrieving documents...</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Retrieved {len(value)} documents ✅</p>", unsafe_allow_html=True)
                         elif key == "grade_documents":
-                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Grading documents...</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Graded documents ✅</p>", unsafe_allow_html=True)
                         elif key == "generate":
-                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Generating...</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Generating Response...</p>", unsafe_allow_html=True)
                         elif key == "grade_generation_v_documents_and_question":
-                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Grading generation...</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p style='font-size: small; color: lightgray;'>Grading Response...</p>", unsafe_allow_html=True)
                         elif key == "HumanSupport":
                             st.markdown(f"<p style='font-size: small; color: lightgray;'>Routing to Human Support...</p>", unsafe_allow_html=True)
                         elif key == "vectorstore":
                             st.markdown(f"<p style='font-size: small; color: lightgray;'>Routing to RAG...</p>", unsafe_allow_html=True)
                         elif key == "END":
-                            st.markdown(f"<p style='font-size: small; color: lightgray;'>END...</p>", unsafe_allow_html=True)
+                            st.markdown(f"<p style='font-size: small; color: lightgray;'>END</p>", unsafe_allow_html=True)
             if new_question:
                 with st.chat_message("assistant"):
                     st.write("Updated Question: ", new_question)
+                new_question = None
+        
+        placeholder = st.empty()
                         
         with st.chat_message("assistant"):
             st.write(value["generation"])
