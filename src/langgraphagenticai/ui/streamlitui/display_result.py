@@ -39,7 +39,7 @@ class DisplayResultStreamlit:
                             st.markdown(f"<p style='font-size: small; color: lightgray;'>END</p>", unsafe_allow_html=True)
             if new_question:
                 with st.chat_message("assistant"):
-                    st.write("Updated Question: ", new_question)
+                    st.markdown(f"<p style='font-size: small; color: lightgray;'>{"Updated Question: ", new_question}</p>", unsafe_allow_html=True)
                 new_question = None
         
         placeholder = st.empty()
