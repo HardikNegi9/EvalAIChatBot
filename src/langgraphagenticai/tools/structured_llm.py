@@ -17,7 +17,7 @@ class StructuredLLMs:
         # Prompt
         system = """You are an expert at routing a user question to a vectorstore or HumanSupport.
         The vectorstore contains documents related to agents, prompt engineering, and adversarial attacks.
-        Use the vectorstore for questions on these topics. Otherwise, use web-search."""
+        Use the vectorstore for questions on these topics. Otherwise, use HumanSupport."""
         route_prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", system),

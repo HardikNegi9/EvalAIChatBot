@@ -13,4 +13,3 @@ bs4
 numpy<2
 opencv-python
 dotenv
-
