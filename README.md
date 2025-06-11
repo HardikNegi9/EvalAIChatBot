@@ -23,6 +23,10 @@ LanggraphAgenticAI is a refined AI chatbot application built using Streamlit. It
 - **Document Retrieval**: Supports retrieval of documents from URLs and PDFs.
 - **Human Support Routing**: Routes queries to human support when necessary.
 
+## Architecture 🧠
+
+![LanggraphAgenticAI Architecture](./EvalAI.png)
+
 ## Installation 🛠️
 
 1. **Clone the repository**:
