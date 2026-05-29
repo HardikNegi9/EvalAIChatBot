@@ -1,8 +1,16 @@
 import os
 import sys
+import types
 import json
 import asyncio
 from dotenv import load_dotenv
+
+# --- BUG FIX FOR RAGAS ---
+# Ragas has a hardcoded import for VertexAI that LangChain recently deleted.
+# We mock it here so Ragas doesn't crash during initialization.
+sys.modules['langchain_community.chat_models.vertexai'] = types.ModuleType('langchain_community.chat_models.vertexai')
+sys.modules['langchain_community.chat_models.vertexai'].ChatVertexAI = type('ChatVertexAI', (object,), {})
+# -------------------------
 
 # Load env variables BEFORE initializing LangSmith client
 load_dotenv(override=True)
