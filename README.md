@@ -18,10 +18,15 @@ LanggraphAgenticAI is a refined AI chatbot application built using Streamlit. It
 ## Features ✨
 
 - **Streamlit Integration**: Easy-to-use web interface powered by Streamlit.
-- **Advanced Language Models**: Utilizes state-of-the-art language models for generating responses.
-- **Graph-Based State Management**: Manages conversation state using a graph-based approach.
-- **Document Retrieval**: Supports retrieval of documents from URLs and PDFs.
-- **Human Support Routing**: Routes queries to human support when necessary.
+- **Advanced Language Models**: Supports Groq (Llama 3) and AWS Bedrock (Nova Lite).
+- **Self-Reflective RAG (LangGraph)**: Implements automated query rewriting, document grading, and hallucination checking to ensure mathematical precision.
+- **Hybrid Search + Reranking**: Uses FAISS (Dense) and BM25 (Sparse) ensemble retrieval, mathematically compressed by a **Cohere Reranker** to guarantee >0.75 Context Precision.
+- **Automated LLMOps CI/CD**: Integrated with `ragas` and AWS CodeBuild to automatically run evaluations on every code push, failing the build if metrics drop below production thresholds.
+- **LangSmith Tracing**: Full observability into LLM traces, generation metrics, and token costs.
+
+## Architecture 🧠
+
+![LanggraphAgenticAI Architecture](./EvalAI.png)
 
 ## Architecture 🧠
 
@@ -56,11 +61,28 @@ LanggraphAgenticAI is a refined AI chatbot application built using Streamlit. It
     ```
 
 5. **Set up environment variables**:
-    Create a [.env](http://_vscodecontentref_/1) file in the root directory and add the following:
+    Create a `.env` file in the root directory and add the following:
     ```env
+    # Model APIs
     GROQ_API_KEY="your_groq_api_key"
     GOOGLE_API_KEY="your_google_api_key"
     HF_TOKEN="your_huggingface_token"
+    AWS_ACCESS_KEY_ID="your_aws_access_key"
+    AWS_SECRET_ACCESS_KEY="your_aws_secret_key"
+    
+    # Reranker
+    COHERE_API_KEY="your_cohere_key"
+
+    # LangSmith Tracing
+    LANGSMITH_TRACING=true
+    LANGSMITH_ENDPOINT=https://api.smith.langchain.com
+    LANGCHAIN_API_KEY="your_langchain_key"
+    LANGSMITH_PROJECT="EvalAI"
+    ```
+
+6. **Run LLMOps Evaluations**:
+    ```sh
+    uv run python evals/ragas_evals_aws.py
     ```
 
 ## Usage 🚀

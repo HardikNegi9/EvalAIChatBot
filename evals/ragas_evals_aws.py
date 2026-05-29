@@ -150,24 +150,24 @@ def run_ragas_evaluation():
         # Check Faithfulness Threshold (Must be >= 0.90)
         faithfulness_score = metrics_dict.get('faithfulness', 0)
         if faithfulness_score < 0.90:
-            print(f"❌ FAILING BUILD: Faithfulness ({faithfulness_score:.4f}) dropped below threshold (0.90)!")
+            print(f"[FAILING BUILD] Faithfulness ({faithfulness_score:.4f}) dropped below threshold (0.90)!")
             fail_pipeline = True
         else:
-            print(f"✅ PASSED: Faithfulness ({faithfulness_score:.4f}) >= 0.90")
+            print(f"[PASSED] Faithfulness ({faithfulness_score:.4f}) >= 0.90")
             
         # Check Context Precision Threshold (Must be >= 0.60)
         precision_score = metrics_dict.get('context_precision', 0)
         if precision_score < 0.60:
-            print(f"❌ FAILING BUILD: Context Precision ({precision_score:.4f}) dropped below threshold (0.60)!")
+            print(f"[FAILING BUILD] Context Precision ({precision_score:.4f}) dropped below threshold (0.60)!")
             fail_pipeline = True
         else:
-            print(f"✅ PASSED: Context Precision ({precision_score:.4f}) >= 0.60")
+            print(f"[PASSED] Context Precision ({precision_score:.4f}) >= 0.60")
             
         if fail_pipeline:
-            print("\n🚨 LLMOps Evaluation Failed! Aborting AWS CodeBuild...")
+            print("\n[ALERT] LLMOps Evaluation Failed! Aborting AWS CodeBuild...")
             sys.exit(1)
         else:
-            print("\n🚀 All LLMOps Evaluations Passed! Ready for deployment.")
+            print("\n[SUCCESS] All LLMOps Evaluations Passed! Ready for deployment.")
             
     except Exception as e:
         print(f"Ragas evaluation failed: {e}")
