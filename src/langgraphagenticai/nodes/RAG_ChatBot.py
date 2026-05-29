@@ -48,7 +48,8 @@ class RagChatBot:
         documents = state["documents"]
 
         # RAG generation
-        generation = self.rag_chain.invoke({"context": documents, "question": question})
+        context_str = "\n\n".join([doc.page_content for doc in documents])
+        generation = self.rag_chain.invoke({"context": context_str, "question": question})
         state["generated"] += 1
         return {"documents": documents, "question": question, "generation": generation}
 
@@ -179,7 +180,7 @@ class RagChatBot:
         generation = state["generation"]
 
         score = self.hallucination_grader.invoke(
-            {"documents": documents, "generation": generation}
+            {"documents": "\n\n".join([doc.page_content for doc in documents]), "generation": generation}
         )
         grade = score.binary_score
 

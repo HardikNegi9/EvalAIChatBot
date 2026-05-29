@@ -1,12 +1,11 @@
-from src.langgraphagenticai.LLMS.groqllm import GroqLLM
+from src.langgraphagenticai.LLMS.awsbedrockllm import AWSBedrockLLM
 from langchain_core.prompts import ChatPromptTemplate
 from src.langgraphagenticai.state.state import RouteQuery, GradeDocuments, GradeHallucinations, GradeAnswer
-from langchain import hub
 from langchain_core.output_parsers import StrOutputParser
 
 class StructuredLLMs:
     def __init__(self, user_controls_input):
-        self.llm_instance = GroqLLM(user_controls_input)
+        self.llm_instance = AWSBedrockLLM(user_controls_input)
         self.llm = self.llm_instance.get_llm_model()
 
     # Router
@@ -58,7 +57,11 @@ class StructuredLLMs:
     def Generator(self):
 
         # Prompt
-        prompt = hub.pull("rlm/rag-prompt")
+        system = "You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.\n\nContext: {context}"
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", system),
+            ("human", "{question}"),
+        ])
 
         # Chain
         rag_chain = prompt | self.llm | StrOutputParser()

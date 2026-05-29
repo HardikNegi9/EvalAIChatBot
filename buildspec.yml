@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - echo "Installing uv and project dependencies..."
+      - curl -LsSf https://astral.sh/uv/install.sh | sh
+      - export PATH="$HOME/.cargo/bin:$PATH"
+      - uv venv
+      - source .venv/bin/activate
+      - uv pip install -r requirements.txt
+  build:
+    commands:
+      - echo "Running LangGraph RAG LLMOps Evaluation..."
+      - source .venv/bin/activate
+      - python evals/ragas_evals_aws.py
+  post_build:
+    commands:
+      - echo "Evaluation complete."
+      - echo "If the evaluation failed, this CodeBuild phase will automatically exit with code 1 and block the deployment."

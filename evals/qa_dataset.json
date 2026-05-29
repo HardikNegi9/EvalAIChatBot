@@ -1,0 +1,22 @@
+[
+    {
+        "question": "What is the primary architecture proposed in the paper 'Attention Is All You Need'?",
+        "expected_answer": "The paper proposes the Transformer, a model architecture that relies entirely on an attention mechanism to draw global dependencies between input and output, completely replacing recurrent and convolutional neural networks."
+    },
+    {
+        "question": "How many identical layers are in the encoder of the base Transformer model?",
+        "expected_answer": "The encoder is composed of a stack of N=6 identical layers."
+    },
+    {
+        "question": "What is the dimensionality of the hidden layers (d_model)?",
+        "expected_answer": "The dimensionality of the hidden layers, denoted as d_model, is 512."
+    },
+    {
+        "question": "What type of attention mechanisms are used in the Transformer model?",
+        "expected_answer": "The model uses Scaled Dot-Product Attention and Multi-Head Attention."
+    },
+    {
+        "question": "How does the Transformer model handle the order of a sequence since it has no recurrence?",
+        "expected_answer": "The model injects some information about the relative or absolute position of the tokens in the sequence through 'Positional Encodings', which use sine and cosine functions of different frequencies."
+    }
+]
