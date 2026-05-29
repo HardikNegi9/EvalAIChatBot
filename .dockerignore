@@ -1,0 +1,23 @@
+# Ignore virtual environments
+.venv/
+venv/
+env/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local environment variables
+.env
+
+# Ignore Git directory
+.git/
+.github/
+
+# Ignore local Ragas eval reports
+evals/*_report.md
+evaluation_report.md
+.system_generated/
+EvalAI.png
