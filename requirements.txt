@@ -14,3 +14,10 @@ numpy<2
 opencv-python
 dotenv
 langchain-google-genai
+ragas
+datasets
+cohere
+langsmith
+pandas
+boto3
+langchain_aws
