@@ -22,3 +22,4 @@ pandas
 boto3
 langchain_aws
 langchain-google-vertexai
+langchain-cohere
