@@ -6,8 +6,7 @@ phases:
       python: 3.12
     commands:
       - echo "Installing uv and project dependencies..."
-      - curl -LsSf https://astral.sh/uv/install.sh | sh
-      - export PATH="$HOME/.cargo/bin:$PATH"
+      - pip install uv
       - uv venv
       - source .venv/bin/activate
       - uv pip install -r requirements.txt
